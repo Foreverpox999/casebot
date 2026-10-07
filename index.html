@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101014" />
+    <title>Кейсбот — апгрейд и кейсы</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Кейсбот, главная"><span class="brand-mark">K</span><span>КЕЙСБОТ</span></a>
+        <button class="wallet" id="wallet" aria-label="Виртуальный баланс"><span class="coin">◈</span><span id="balance">1 200</span></button>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-copy"><span class="eyebrow"><i></i> ТВОЯ КОЛЛЕКЦИЯ CS2</span><h1>Открывай.<br /><span>Прокачивай.</span></h1><p>Испытай удачу и собери свой набор скинов.</p></div>
+          <div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="hero-gun">⌁</div><span class="spark spark-one">✦</span><span class="spark spark-two">✧</span><span class="hero-tag">DROP<br /><b>01</b></span></div>
+        </section>
+
+        <nav class="tabs" aria-label="Разделы"><button class="tab active" data-view="cases"><span>▣</span> Кейсы</button><button class="tab" data-view="upgrade"><span>↗</span> Апгрейд</button><button class="tab" data-view="inventory"><span>◫</span> Инвентарь <b id="inventory-count">3</b></button></nav>
+
+        <section class="view active" id="view-cases">
+          <div class="section-heading"><div><span class="eyebrow">ВЫБИРАЙ СВОЙ ДРОП</span><h2>Кейсы</h2></div><span class="section-note">Открытие за виртуальные монеты</span></div>
+          <div class="case-grid" id="case-grid"></div>
+          <div class="info-strip"><span class="info-icon">ⓘ</span><span>Все предметы и монеты в демо — виртуальные. Вывод и реальные платежи отключены.</span></div>
+        </section>
+
+        <section class="view" id="view-upgrade">
+          <div class="section-heading"><div><span class="eyebrow">РИСКНИ И УЛУЧШИ</span><h2>Апгрейд</h2></div><span class="section-note">Шанс зависит от стоимости предметов</span></div>
+          <div class="upgrade-board">
+            <div class="upgrade-slots"><button class="slot" id="source-slot"><span class="slot-plus">＋</span><span class="slot-label">ТВОЙ ПРЕДМЕТ</span><b id="source-name">Выбери скин</b><small id="source-value">из инвентаря</small></button><div class="upgrade-arrow">↗</div><button class="slot target-slot" id="target-slot"><span class="slot-plus">＋</span><span class="slot-label">ЖЕЛАЕМЫЙ ПРЕДМЕТ</span><b id="target-name">Выбери цель</b><small id="target-value">из списка ниже</small></button></div>
+            <div class="chance-row"><span>Шанс успеха</span><strong id="chance-label">—</strong></div><div class="chance-track"><i id="chance-fill"></i><span></span></div>
+            <button class="primary-btn" id="upgrade-button" disabled>Выбери предметы</button><p class="upgrade-hint" id="upgrade-hint">При успехе предмет заменится на выбранный. При неудаче предмет будет потерян.</p>
+          </div>
+          <div class="picker-heading"><h3 id="picker-title">Выбери предмет из инвентаря</h3><button class="picker-toggle" id="picker-toggle">Для апгрейда</button></div>
+          <div class="item-grid" id="item-grid"></div>
+          <div class="info-strip"><span class="info-icon">ⓘ</span><span>Вероятность показывается до попытки. Используются только виртуальные предметы.</span></div>
+        </section>
+
+        <section class="view" id="view-inventory">
+          <div class="section-heading"><div><span class="eyebrow">ТВОИ НАХОДКИ</span><h2>Инвентарь</h2></div><span class="section-note" id="inventory-total">0 предметов</span></div>
+          <div class="item-grid inventory-grid" id="inventory-grid"></div>
+          <div class="empty-state hidden" id="empty-state"><span>◫</span><b>Пока пусто</b><p>Открой кейс, чтобы получить первый предмет.</p><button class="text-btn" data-goto="cases">Перейти к кейсам →</button></div>
+        </section>
+      </main>
+      <footer><span>КЕЙСБОТ <i>•</i> ДЕМО</span><span>Не связано с Valve или Steam</span></footer>
+    </div>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop" id="result-modal" aria-hidden="true"><div class="result-modal"><button class="modal-close" id="modal-close" aria-label="Закрыть">×</button><span class="eyebrow" id="result-kicker">ТВОЙ ДРОП</span><div class="result-art" id="result-art"></div><h2 id="result-title">Предмет</h2><p id="result-subtitle">Описание предмета</p><button class="primary-btn" id="result-accept">Забрать в инвентарь</button></div></div>
+    <script src="app.js"></script>
+  </body>
+</html>
